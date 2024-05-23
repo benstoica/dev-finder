@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 const formSchema = z.object({
   name: z.string().min(1).max(50),
   description: z.string().min(1).max(250),
-  language: z.string().min(1).max(50),
+  tags: z.string().min(1).max(50),
   githubRepo: z.string().min(1).max(50),
 });
 
@@ -32,7 +32,7 @@ const CreateRoomForm = () => {
     defaultValues: {
       name: "",
       description: "",
-      language: "",
+      tags: "",
       githubRepo: "",
     },
   });
@@ -53,7 +53,7 @@ const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="DevFinder" />
               </FormControl>
               <FormDescription>This is your public room name.</FormDescription>
               <FormMessage />
@@ -68,7 +68,10 @@ const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="I'm working on a side project, come join me."
+                />
               </FormControl>
               <FormDescription>
                 Please describe what you are working on.
@@ -80,16 +83,16 @@ const CreateRoomForm = () => {
 
         <FormField
           control={form.control}
-          name="language"
+          name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Primary ProgrammingLanguage</FormLabel>
+              <FormLabel>Tags</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="typescript, nextjs, tailwind" />
               </FormControl>
               <FormDescription>
-                List the primary programming language you are working with in
-                your project.
+                List your programming languages, frameworks, or libraries so
+                people can find your content.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -103,7 +106,10 @@ const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>Github Repo</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="https://github.com/facebook/react"
+                />
               </FormControl>
               <FormDescription>
                 Please put a link to the project you are working on.
